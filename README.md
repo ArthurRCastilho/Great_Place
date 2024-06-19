@@ -7,10 +7,11 @@ Neste aplicativo, aprendi conceitos de ...
 
 ### Layout
 
+> :construction: Projeto em construção :construction:
 
 #### GIFS
 
-
+> :construction: Projeto em construção :construction:
 
 ## Como rodar o projeto?
 
