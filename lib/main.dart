@@ -16,15 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Great Places',
       theme: ThemeData(
-        primaryColor: Colors.red,
+        primaryColor: Colors.cyan,
         colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: Colors.red,
+              primary: Colors.cyan,
               secondary: Colors.black,
+              tertiary: Colors.white,
             ),
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan,
           titleTextStyle: TextStyle(
             color: Colors.white,
             fontSize: 22,
