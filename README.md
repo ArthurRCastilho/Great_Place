@@ -2,7 +2,7 @@
 Este aplicativo foi feito na intenção de aprender os recursos nativos dos celulares
 
 ### O que eu aprendi neste aplicativo
-Neste aplicativo, aprendi conceitos de ...
+Neste aplicativo, aprendi conceitos de como usar a camera do celular com ImagePicker, implementação de banco de dados SQLite...
 <br>
 
 ### Layout
