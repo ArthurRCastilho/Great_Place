@@ -37,7 +37,7 @@ Este projeto foi totalmente feito a partir de um curso da udemy, na qual você p
 
 Neste projeto contém estruturas de fundamentos de flutter, sendo elas:
 - [X] ImagePicker;
-- [ ] SQLite;
+- [X] SQLite;
 - [ ] LayoutInput;
 - [ ] Configuranado Localização;
 - [ ] API Google Maps;
