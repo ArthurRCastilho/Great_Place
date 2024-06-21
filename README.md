@@ -36,7 +36,7 @@ E aperte para rodar o seu código, após alguns segundos o programa deve ser abe
 Este projeto foi totalmente feito a partir de um curso da udemy, na qual você pode [clicar aqui](https://www.udemy.com/course/curso-flutter/?couponCode=ST6MT42324) para acessar o curso<br>
 
 Neste projeto contém estruturas de fundamentos de flutter, sendo elas:
-- [ ] ImagePicker;
+- [X] ImagePicker;
 - [ ] SQLite;
 - [ ] LayoutInput;
 - [ ] Configuranado Localização;
