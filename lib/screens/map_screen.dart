@@ -4,6 +4,7 @@ import 'package:great_place/models/place.dart';
 
 class MapScreen extends StatefulWidget {
   final PlaceLocation initialLocation;
+  final bool isReadyOnly;
 
   const MapScreen(
       {this.initialLocation = const PlaceLocation(
@@ -11,6 +12,7 @@ class MapScreen extends StatefulWidget {
         latitude: 37.419857,
         longitude: -122.078827,
       ),
+      this.isReadyOnly = false,
       Key? key})
       : super(key: key);
 
@@ -19,11 +21,29 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  LatLng? _pickedPosition;
+  void _selectPosition(LatLng position) {
+    setState(() {
+      _pickedPosition = position;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Selecione...'),
+        actions: [
+          if (!widget.isReadyOnly)
+            IconButton(
+              onPressed: _pickedPosition == null
+                  ? null
+                  : () {
+                      Navigator.of(context).pop(_pickedPosition);
+                    },
+              icon: Icon(Icons.check),
+            )
+        ],
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
@@ -33,6 +53,17 @@ class _MapScreenState extends State<MapScreen> {
           ),
           zoom: 13,
         ),
+        onTap: widget.isReadyOnly ? null : _selectPosition,
+        markers: _pickedPosition == null
+            ? {}
+            : {
+                Marker(
+                  markerId: const MarkerId('p1'),
+                  position: _pickedPosition!,
+                )
+              },
+        myLocationButtonEnabled: true,
+        mapType: MapType.hybrid,
       ),
     );
   }
