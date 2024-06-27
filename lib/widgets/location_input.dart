@@ -5,26 +5,39 @@ import 'package:great_place/utils/location_util.dart';
 import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
-  const LocationInput({super.key});
+  final Function onSelectPosition;
+  const LocationInput(this.onSelectPosition);
 
   @override
   State<LocationInput> createState() => _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
-  String _previemImageUrl = '';
+  String? _previemImageUrl;
 
-  Future<void> _getCurrentUserLocation() async {
-    final locData = await Location().getLocation();
-
+  void _showPreview(double lat, double lng) {
     final staticMapImageUrl = LocationUtil.generateLocationPreviewImage(
-      latitude: (locData.latitude as double),
-      logitude: (locData.longitude as double),
+      latitude: lat,
+      longitude: lng,
     );
 
     setState(() {
       _previemImageUrl = staticMapImageUrl;
     });
+  }
+
+  Future<void> _getCurrentUserLocation() async {
+    try {
+      final locData = await Location().getLocation();
+
+      _showPreview(locData.latitude!, locData.longitude!);
+      widget.onSelectPosition(LatLng(
+        locData.latitude!,
+        locData.longitude!,
+      ));
+    } catch (e) {
+      return;
+    }
   }
 
   Future<void> _selectOnMap() async {
@@ -33,9 +46,11 @@ class _LocationInputState extends State<LocationInput> {
         builder: (ctx) => MapScreen(),
       ),
     );
-    if (selectedLocation == null) return;
 
-    print(selectedLocation.latitude);
+    if (selectedLocation == '') return;
+    _showPreview(selectedLocation.latitude, selectedLocation.longitude);
+
+    widget.onSelectPosition(selectedLocation);
   }
 
   @override
@@ -52,10 +67,10 @@ class _LocationInputState extends State<LocationInput> {
               color: Colors.grey,
             ),
           ),
-          child: _previemImageUrl == ''
+          child: _previemImageUrl == null
               ? const Text('Nenhuma Localização não informada!')
               : Image.network(
-                  _previemImageUrl,
+                  _previemImageUrl!,
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),

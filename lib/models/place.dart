@@ -12,7 +12,7 @@ class PlaceLocation {
 class Place {
   final String id;
   final String title;
-  final String location; // String temporaria
+  final PlaceLocation? location; // String temporaria
   final File image;
 
   Place({
