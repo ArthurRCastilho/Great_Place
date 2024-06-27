@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'providers/great_places.dart';
-import 'package:great_place/screens/place_form_screen.dart';
-import 'package:great_place/screens/places_list_screen.dart';
-import 'package:great_place/utils/app_routes.dart';
+import 'package:great_place/providers/great_places.dart';
+import './screens/place_form_screen.dart';
+import './screens/places_list_screen.dart';
+import './utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -10,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Great Places',
         theme: ThemeData(
-          primaryColor: Colors.cyan,
           colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: Colors.cyan,
                 secondary: Colors.black,
                 tertiary: Colors.white,
               ),
-          useMaterial3: true,
-          appBarTheme: const AppBarTheme(
+          appBarTheme: AppBarTheme(
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.cyan,
             titleTextStyle: TextStyle(
@@ -34,10 +32,11 @@ class MyApp extends StatelessWidget {
               fontSize: 22,
             ),
           ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: const PlacesListScreen(),
         routes: {
-          AppRoutes.PLACE_FORM: (ctx) => const PlaceFormScreen(),
+          AppRoutes.placeForm: (ctx) => const PlaceFormScreen(),
         },
       ),
     );

@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:great_place/utils/db_util.dart';
-import 'package:great_place/utils/location_util.dart';
 import '../models/place.dart';
+import '../utils/db_util.dart';
+import '../utils/location_util.dart';
 
 class GreatPlaces with ChangeNotifier {
   List<Place> _items = [];
@@ -18,14 +19,13 @@ class GreatPlaces with ChangeNotifier {
             title: item['title'],
             image: File(item['image']),
             location: PlaceLocation(
-              latitude: item['lat'],
-              longitude: item['lng'],
+              latitude: item['latitude'],
+              longitude: item['longitude'],
               address: item['address'],
             ),
           ),
         )
         .toList();
-
     notifyListeners();
   }
 
@@ -37,7 +37,7 @@ class GreatPlaces with ChangeNotifier {
     return _items.length;
   }
 
-  Place getItem(int index) {
+  Place itemByIndex(int index) {
     return _items[index];
   }
 
@@ -58,13 +58,14 @@ class GreatPlaces with ChangeNotifier {
         address: address,
       ),
     );
+
     _items.add(newPlace);
     DbUtil.insert('places', {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path,
-      'lat': position.latitude,
-      'lng': position.longitude,
+      'latitude': position.latitude,
+      'longitude': position.longitude,
       'address': address,
     });
     notifyListeners();

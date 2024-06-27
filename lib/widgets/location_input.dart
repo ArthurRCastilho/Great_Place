@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:great_place/screens/map_screen.dart';
 import 'package:great_place/utils/location_util.dart';
 import 'package:location/location.dart';
+import '../screens/map_screen.dart';
 
 class LocationInput extends StatefulWidget {
   final Function onSelectPosition;
-  const LocationInput(this.onSelectPosition);
+
+  const LocationInput(this.onSelectPosition, {Key? key}) : super(key: key);
 
   @override
   State<LocationInput> createState() => _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
-  String? _previemImageUrl;
+  String? _previewImageUrl;
 
   void _showPreview(double lat, double lng) {
     final staticMapImageUrl = LocationUtil.generateLocationPreviewImage(
@@ -22,7 +23,7 @@ class _LocationInputState extends State<LocationInput> {
     );
 
     setState(() {
-      _previemImageUrl = staticMapImageUrl;
+      _previewImageUrl = staticMapImageUrl;
     });
   }
 
@@ -41,16 +42,17 @@ class _LocationInputState extends State<LocationInput> {
   }
 
   Future<void> _selectOnMap() async {
-    final LatLng selectedLocation = await Navigator.of(context).push(
+    final LatLng? selectedPosition = await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) => MapScreen(),
+        fullscreenDialog: true,
+        builder: (ctx) => const MapScreen(),
       ),
     );
 
-    if (selectedLocation == '') return;
-    _showPreview(selectedLocation.latitude, selectedLocation.longitude);
+    if (selectedPosition == null) return;
 
-    widget.onSelectPosition(selectedLocation);
+    _showPreview(selectedPosition.latitude, selectedPosition.longitude);
+    widget.onSelectPosition(selectedPosition);
   }
 
   @override
@@ -67,10 +69,10 @@ class _LocationInputState extends State<LocationInput> {
               color: Colors.grey,
             ),
           ),
-          child: _previemImageUrl == null
-              ? const Text('Nenhuma Localização não informada!')
+          child: _previewImageUrl == null
+              ? const Text('Localização não informada!')
               : Image.network(
-                  _previemImageUrl!,
+                  _previewImageUrl!,
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
@@ -79,14 +81,14 @@ class _LocationInputState extends State<LocationInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
-              onPressed: _getCurrentUserLocation,
-              label: const Text('Localização Atual'),
               icon: const Icon(Icons.location_on),
+              label: const Text('Localização atual'),
+              onPressed: _getCurrentUserLocation,
             ),
             TextButton.icon(
-              onPressed: _selectOnMap,
-              label: const Text('Selecione no Mapa'),
               icon: const Icon(Icons.map),
+              label: const Text('Selecione no Mapa'),
+              onPressed: _selectOnMap,
             ),
           ],
         )
