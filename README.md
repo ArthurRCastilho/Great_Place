@@ -24,7 +24,7 @@ Neste projeto contém estruturas de fundamentos de flutter, sendo elas:
 - [X] Configuranado Localização;
 - [X] API Google Maps;
 - [X] Google Maps for flutter.
-- [ ] Guardar dados dentro do banco de dados(SQLite)
+- [X] Guardar dados dentro do banco de dados(SQLite)
 
 ### Tecnologias utilizadas
 - ``VSCode``
