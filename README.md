@@ -7,11 +7,12 @@ Neste aplicativo, aprendi conceitos de como usar a camera do celular com ImagePi
 
 ### Layout
 
-> :construction: Projeto em construção :construction:
+<img src="./assets/images/Home_Screen.png" alt="Página Inicial" width="270px"> <img src="./assets/images/AddPlace_Screen.png" alt="Nova Localização" width="270px"> <img src="./assets/images/Place_Detail_Screen.png" alt="Página inicial com Transações" width="270px"> <img src="./assets/images/Map_Screen.png" alt="Mapas" width="270px">
+
 
 #### GIFS
 
-> :construction: Projeto em construção :construction:
+<img src="./assets/gifs/GifForApp.gif" alt="GifApp" width="270px">
 
 ## Como foi feito este projeto?
 
