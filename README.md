@@ -27,6 +27,16 @@ Neste projeto contém estruturas de fundamentos de flutter, sendo elas:
 - [X] Google Maps for flutter.
 - [X] Guardar dados dentro do banco de dados(SQLite)
 
+## Dependências
+- ``Provider``
+- ``Image Picker``
+- ``Path Provider``
+- ``Path``
+- ``Sqflite``
+- ``Location``
+- ``Google Maps for Flutter``
+- ``Http``
+
 ### Tecnologias utilizadas
 - ``VSCode``
 - ``Dart``
