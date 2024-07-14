@@ -28,14 +28,14 @@ Neste projeto contém estruturas de fundamentos de flutter, sendo elas:
 - [X] Guardar dados dentro do banco de dados(SQLite)
 
 ## Dependências
-- ``Provider``
-- ``Image Picker``
-- ``Path Provider``
-- ``Path``
-- ``Sqflite``
-- ``Location``
-- ``Google Maps for Flutter``
-- ``Http``
+- ``provider: ^6.1.2``
+- ``image_picker: ^1.1.2``
+- ``path_provider: ^2.1.3``
+- ``path: ^1.9.0``
+- ``sqflite: ^2.3.3+1``
+- ``location: ^6.0.2``
+- ``google_maps_flutter: ^2.5.3``
+- ``http: ^1.2.1``
 
 ### Tecnologias utilizadas
 - ``VSCode``
